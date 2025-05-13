@@ -1,0 +1,94 @@
+{block content}
+
+<div hx-target="this" hx-swap="outerHTML">
+{include '../header.latte'}
+    <!--Main layout-->
+  <main class="my-5">
+    <div class="container">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-md-9 mb-4">
+          <!--Section: Content-->
+          <section>
+		  
+            <!-- Post -->
+            <div class="row">
+              <div class="col-md-4 mb-4">
+                <div class="bg-image hover-overlay shadow-1-strong rounded">
+                  <img src="{$basePath}/uploads/img/{$posts->img_url}" class="img-fluid shadow" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-md-8 mb-4">
+                <h5>{$posts->title}</h5>
+                <p>
+                  {$posts->content}
+                </p>
+
+                
+              </div>
+            </div>
+                <!--Přihlaš se na událost-->
+                <button type="button" class="btn btn-primary shadow" hx-get="{link Home:eventRegister}">Přihlaš se na údálost</button>
+                <button type="button" class="btn btn-secondary shadow" hx-get="{link Home:default}">Zpět</button>
+          </section>
+          <!--Section: Content-->
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-3 mb-4">
+          <!--Section: Sidebar-->
+          <section class="sticky-top" style="top: 80px;">
+            <!--Section: Video-->
+            <section class="text-center">
+              <h5 class="mb-4">Video k události</h5>
+
+              <div class="embed-responsive embed-responsive-16by9 shadow-4-strong">
+                <iframe class="embed-responsive-item rounded shadow" src="https://www.youtube.com/embed/c9B4TPnak1A"
+                  allowfullscreen></iframe>
+              </div>
+            </section>
+            <!--Section: Video-->
+            <hr>
+            <!--Section: Ad-->
+            <section class="text-center border-bottom pb-4 mb-4">
+              <div class="bg-image hover-overlay mb-4">
+              <h2>Komentáře:</h2>
+                <div n:foreach="$comments as $comment">
+                <strong>{$comment->name}</strong>
+                <p>{$comment->content}</p>
+                </div>
+                <a href="https://mdbootstrap.com/docs/standard/" target="_blank">
+                  <div class="mask" style="background-color: rgba(57, 192, 237, 0.2);"></div>
+                </a>
+                {* <button type="button" class="btn btn-primary" hx-get="{link Home:show $post->id}" data-mdb-ripple-init>Read</button> *}
+              </div>
+              {* <h5>Material Design for Bootstrap 5</h5>
+
+              <p>
+                500+ components, free templates, 1-min installation, extensive tutorial, huge
+                community. MIT license - free for personal & commercial use
+              </p> *}
+              {if $user->isLoggedIn()}
+              <a role="button" class="btn btn-primary" href="{link Post:new}"
+                target="_blank">Vlož komentář<i class="fas fa-download ms-2"></i></a>
+                {/if}
+            </section>
+            <!--Section: Ad-->
+
+          </section>
+          <!--Section: Sidebar-->
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+</main>
+{include '../footer.latte'}
+</div>
+{/block}

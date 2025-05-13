@@ -1,0 +1,71 @@
+{block content}
+{include '../header.latte'}
+<section>
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+    <div class="container">
+      <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <h1 class="my-5 display-3 fw-bold ls-tight">
+            Pro Zdraví <br />
+            <span class="text-primary">a Naději</span>
+          </h1>
+          <p style="color: hsl(217, 10%, 50.8%)">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit...
+          </p>
+        </div>
+
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <div class="card">
+            <div class="card-body py-5 px-md-5 shadow">
+              {form loginForm}
+                  {if $form->errors}
+                      <ul class="errors" style="color:red;">
+                          {foreach $form->errors as $error}
+                              <p>{$error}</p>
+                          {/foreach}
+                      </ul>
+                  {/if}
+                <div class="form-outline mb-4" data-mdb-input-init>
+                  {label email /}
+                  {input email}
+                </div>
+
+                <div class="form-outline mb-4" data-mdb-input-init>
+                  {label password /}
+                  {input password}
+                </div>
+
+           
+
+                {input send}
+
+                <a n:href="Sign:sign">Nemáte účet? Založte si!</a>
+
+              {/form}
+
+              <div class="text-center mt-4">
+                <p>or sign up with:</p>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                  <i class="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                  <i class="fab fa-google"></i>
+                </button>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                  <i class="fab fa-twitter"></i>
+                </button>
+                <button type="button" class="btn btn-link btn-floating mx-1">
+                  <i class="fab fa-github"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{include '../footer.latte'}
+
+{/block}

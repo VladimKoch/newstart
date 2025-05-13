@@ -1,0 +1,29 @@
+services:
+	- App\Core\RouterFactory::createRouter
+	- App\Model\ArticleManager
+	- App\Model\Auth
+	- App\Model\UserManager
+	- App\Model\PostManager
+	- App\Model\CalculatorManager
+	- App\MyApi\v1\Handlers\UsersListingHandler
+	- Tomaj\NetteApi\Link\ApiLink
+	- Tomaj\NetteApi\Misc\IpDetector
+	- App\MyApi\v1\Forms\ImgForm
+	- App\Model\ImageUploadFormFactory
+	- App\Model\EManager
+	- App\Components\NewsletterComponent
+	
+	mailer:
+		factory: Nette\Mail\SmtpMailer(%host%, %username%, %password%, %secure%, %port%)
+
+
+
+search:
+	-	in: %appDir%
+		classes:
+			- *Facade
+			- *Factory
+			- *Repository
+			- *Service
+
+	

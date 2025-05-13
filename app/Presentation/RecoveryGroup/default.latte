@@ -1,0 +1,172 @@
+{* This is the welcome page, you can delete it *}
+
+{block content}
+<div hx-target="this" hx-swap="outerHTML">
+{include '../header.latte'}
+{* <div id="banner">
+  <h1 n:block=title>Congratulations!</h1>
+	
+{* <div id="banner">
+	<h1 n:block=title>Congratulations!</h1>
+</div>
+
+   <div id="current-time"></div>
+<div id="content">
+	
+	
+	<br>
+	<br>
+
+	<div class="pagination">{if $page > 1}
+
+				<a n:href="default, 1">První</a>
+				&nbsp;|&nbsp;
+				<a n:href="default, $page-1">Předchozí</a>
+				&nbsp;|&nbsp;
+				{/if}Stránka {$page} z {$lastPage}
+
+				{if $page < $lastPage}
+				&nbsp;|&nbsp;
+					<a n:href="default, $page+1">Další</a>&nbsp;|&nbsp;<a n:href="default, $lastPage">Poslední</a>
+				{/if}
+	</div>
+
+	<br>
+
+	<div n:foreach="$posts as $post" class="posts">
+		<a n:href="Post:default $post->id">{$post->title}</a>
+		<p>{$post->content}</p>
+		<br>
+	</div>
+
+	<div>
+	{if $user->isLoggedIn()}<a n:href="Post:new">Vložit nový příspěvek</a>{/if}
+	</div>
+
+
+
+
+	
+	<a n:href="click!" class="btn btn-primary ajax">Zapamatuj čas</a>
+
+
+
+
+
+
+	
+	{snippet mySnippet}
+		<div>
+		<p>čas:{$time}</p>
+		</div>
+	{/snippet}
+
+
+
+</div> *}
+
+  <!--Main layout-->
+  <main class="my-5">
+    <div class="container">
+      <!--Grid row-->
+      <div class="row">
+        <!--Grid column-->
+        <div class="col-md-9 mb-4">
+          <!--Section: Content-->
+          <section>
+		  
+            <!-- Post -->
+            <div class="row">
+              <div class="col-12">
+                <div class="bg-image hover-overlay shadow-1-strong rounded"  data-mdb-ripple-init data-mdb-ripple-color="light">
+                  <img src="{$basePath}/uploads/img/vizitka.jpg" class="img-fluid" />
+                  <a href="#!">
+                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-md-8 mb-4">
+                {* <h5>{$post->title}</h5>
+                <p>
+                  {$post->content}
+                </p> *}
+
+               
+              </div>
+            </div>
+			
+          </section>
+          <!--Section: Content-->
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-3 mb-4">
+          <!--Section: Sidebar-->
+          <section class="sticky-top" style="top: 80px;">
+            <!--Section: Ad-->
+            <section class="text-center border-bottom pb-4 mb-4">
+              <div class="bg-image hover-overlay mb-4" data-mdb-ripple-init>
+                <img
+                  src="{$basePath}/uploads/img/unnamed.jpg"
+                  class="img-fluid" />
+                <a href="https://mdbootstrap.com/docs/standard/" target="_blank">
+                  <div class="mask" style="background-color: rgba(57, 192, 237, 0.2);"></div>
+                </a>
+              </div>
+              <h5>Lay Institute for Global Health Training</h5>
+
+              <p>
+                Laický institut pro globální zdraví (LIGH) je mezinárodní vzdělávací a výzkumná organizace, která se zaměřuje na
+                zlepšení zdraví a blahobytu lidí po celém světě. Naším cílem je poskytovat kvalitní vzdělání a výzkum v oblasti
+                globálního zdraví a podporovat inovace a spolupráci mezi odborníky v této oblasti. 
+              </p>
+              <a role="button" class="btn btn-primary" href="https://mdbootstrap.com/docs/standard/" data-mdb-ripple-init
+                target="_blank">Download for free<i class="fas fa-download ms-2"></i></a>
+            </section>
+            <!--Section: Ad-->
+            <!--Section: Video-->
+            <section class="text-center">
+              <h5 class="mb-4">Pozvánka na skupinky</h5>
+
+              <div class="embed-responsive embed-responsive-16by9 shadow-4-strong">
+                <iframe class="embed-responsive-item rounded" src="https://www.youtube.com/embed/NFkklaJDQnU"
+                  allowfullscreen></iframe>
+              </div>
+            </section>
+            <!--Section: Video-->
+
+          </section>
+          <!--Section: Sidebar-->
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+
+
+      <!-- Pagination -->
+      <nav class="my-4" aria-label="...">
+        <ul class="pagination pagination-circle justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </main>
+  <!--Main layout-->
+
+{include '../footer.latte'}
+
+</div>
+
+{/block}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>{var $subject}</title>
+</head>
+<body>
+    <div>
+        <h1>{var $subject}</h1>
+        {if isset($content)}
+        <p>{$content|noescape}</p>
+        {/if}
+    </div>
+</body>
+</html>
