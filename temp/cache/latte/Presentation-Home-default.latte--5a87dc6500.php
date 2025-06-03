@@ -1,35 +1,63 @@
-{* This is the welcome page, you can delete it *}
+<?php
 
-{block content}
+declare(strict_types=1);
 
-{* <div hx-target="this" hx-swap="outerHTML"> *}
-{* {include '../header.latte'} *}
+use Latte\Runtime as LR;
+
+/** source: C:\xampp\htdocs\newstart\app\Presentation\Home/default.latte */
+final class Template_5a87dc6500 extends Latte\Runtime\Template
+{
+	public const Source = 'C:\\xampp\\htdocs\\newstart\\app\\Presentation\\Home/default.latte';
+
+	public const Blocks = [
+		['content' => 'blockContent'],
+	];
 
 
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
 
-	{* <div class="pagination">{if $page > 1}
+		if ($this->global->snippetDriver?->renderSnippets($this->blocks[self::LayerSnippet], $this->params)) {
+			return;
+		}
 
-				<a n:href="default, 1">První</a>
-				&nbsp;|&nbsp;
-				<a n:href="default, $page-1">Předchozí</a>
-				&nbsp;|&nbsp;
-				{/if}Stránka {$page} z {$lastPage}
+		$this->renderBlock('content', get_defined_vars()) /* line 3 */;
+	}
 
-				{if $page < $lastPage}
-				&nbsp;|&nbsp;
-					<a n:href="default, $page+1">Další</a>&nbsp;|&nbsp;<a n:href="default, $lastPage">Poslední</a>
-				{/if}
-	</div> *}
+
+	public function prepare(): array
+	{
+		extract($this->params);
+
+		if (!$this->getReferringTemplate() || $this->getReferenceType() === 'extends') {
+			foreach (array_intersect_key(['post' => '47'], $this->params) as $ʟ_v => $ʟ_l) {
+				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
+			}
+		}
+		return get_defined_vars();
+	}
+
+
+	/** {block content} on line 3 */
+	public function blockContent(array $ʟ_args): void
+	{
+		extract($this->params);
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		echo '
+
 
   <!--Main layout-->
   <main class="my-5">
     <div class="container">
            <!--Section: Video-->
             <section class="text-center">
-              <h1 style="font-family: 'Times New Roman', sans-serif" class="mb-4">Lay Institute for Global Health Training</h1>
+              <h1 style="font-family: \'Times New Roman\', sans-serif" class="mb-4">Lay Institute for Global Health Training</h1>
 
               <div class="shadow" style="position: relative; width: 100%; padding-bottom: 16.66%;">
-              {* <div class="embed-responsive embed-responsive-16by9 shadow-4-strong ratio ratio-21x9"> *}
                 <iframe class="embed-responsive-item rounded" src="https://www.youtube.com/embed/D56TocFcyRo"
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
                   allowfullscreen></iframe>
@@ -44,12 +72,18 @@
         <div class="col-md-9 mb-4">
           <!--Section: Content-->
           <section>
-		  <div n:foreach="$posts as $post">
+';
+		foreach ($posts as $post) /* line 47 */ {
+			echo '		  <div>
             <!-- Post -->
             <div class="row">
               <div class="col-md-4 mb-4">
                 <div class="bg-image hover-overlay shadow-1-strong rounded" data-mdb-ripple-color="light">
-                  <img src="{$basePath}/uploads/img/{$post->img_url}" class="img-fluid shadow" />
+                  <img src="';
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 52 */;
+			echo '/uploads/img/';
+			echo LR\Filters::escapeHtmlAttr($post->img_url) /* line 52 */;
+			echo '" class="img-fluid shadow" />
                   <a href="#!">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                   </a>
@@ -57,17 +91,29 @@
               </div>
 
               <div class="col-md-8 mb-4">
-                <h5>{$post->title}</h5>
+                <h5>';
+			echo LR\Filters::escapeHtmlText($post->title) /* line 60 */;
+			echo '</h5>
                 <p>
-                  {$post->content}
+                  ';
+			echo LR\Filters::escapeHtmlText($post->content) /* line 62 */;
+			echo '
                 </p>
-                <p>{$post->id}</p>
+                <p>';
+			echo LR\Filters::escapeHtmlText($post->id) /* line 64 */;
+			echo '</p>
 
-                <a type="button" class="btn btn-primary shadow" href="{$presenter->link('Home:show', $post->id)}">Zobraz</a>
+                <a type="button" class="btn btn-primary shadow" href="';
+			echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($presenter->link('Home:show', $post->id))) /* line 66 */;
+			echo '">Zobraz</a>
               </div>
             </div>
 			</div>
-          </section>
+';
+
+		}
+
+		echo '          </section>
           <!--Section: Content-->
         </div>
         <!--Grid column-->
@@ -80,7 +126,9 @@
             <section class="text-center border-bottom pb-4 mb-4">
               <div class="bg-image hover-overlay mb-4" data-mdb-ripple-init>
                 <img
-                  src="{$basePath}/uploads/img/unnamed.jpg"
+                  src="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 83 */;
+		echo '/uploads/img/unnamed.jpg"
                   class="img-fluid" />
                 <a href="https://mdbootstrap.com/docs/standard/" target="_blank">
                   <div class="mask" style="background-color: rgba(57, 192, 237, 0.2);"></div>
@@ -124,10 +172,6 @@
                 <li class="list-group-item"><a href="https://www.youtube.com/watch?v=6qUBED_5j88">Jonathan Oriel - Tan Fragil</a></li>
               </ul>
 
-              {* <div class="embed-responsive embed-responsive-16by9 shadow-4-strong">
-                <iframe class="embed-responsive-item rounded" src="https://www.youtube.com/embed/NFkklaJDQnU"
-                  allowfullscreen></iframe>
-              </div> *}
             </section>
             <!--Section: Content-->
 
@@ -139,24 +183,9 @@
       <!--Grid row-->
 
       <!-- Pagination -->
-      {* <nav class="my-4" aria-label="...">
-        <ul class="pagination pagination-circle justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav> *}
     </div>
   </main>
   <!--Main layout-->
-{* {include '../footer.latte'} *}
-{* </div> *}
-{/block}
+';
+	}
+}

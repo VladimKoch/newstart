@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Presentation\ImgApi;
 
+use App\Bootstrap;
 use Nette;
 use Nette\ComponentModel\IComponent;
 use Nette\Application\UI\Form;
@@ -11,6 +12,7 @@ use Nette\Application\Responses\FileResponse;
 use Nette\Application\BadRequestException;
 use Nette\Utils\Image;
 use Contributte\FormsBootstrap\BootstrapForm;
+use Contributte\FormsBootstrap\Enums;
 
 
 final class ImgApiPresenter extends Nette\Application\UI\Presenter
@@ -38,8 +40,9 @@ final class ImgApiPresenter extends Nette\Application\UI\Presenter
     protected function createComponentImageUploadForm(): ?IComponent
     {      
         
+        BootstrapForm::switchBootstrapVersion(Enums\BootstrapVersion::V5);
      
-        $form = new Form;
+        $form = new BootstrapForm;
 
         $form->addUpload('image', 'Nahrajte obrázek:')
             ->setRequired('Prosím, nahrajte obrázek.')

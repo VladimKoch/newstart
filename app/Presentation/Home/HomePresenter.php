@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Presentation\Home;
 
 use Nette;
+use Nette\Application\UI\Form;
+use Contributte\FormsBootstrap\BootstrapForm;
+use Contributte\FormsBootstrap\Enums;
 
 
 final class HomePresenter extends Nette\Application\UI\Presenter
@@ -13,7 +16,8 @@ final class HomePresenter extends Nette\Application\UI\Presenter
     
 
     public function __construct(private \App\Model\ArticleManager $article,
-                                private \Nette\Http\Request $request)
+                                private \Nette\Http\Request $request,
+                                private \Nette\Database\Explorer $database)
     {
        
     }
@@ -57,7 +61,7 @@ final class HomePresenter extends Nette\Application\UI\Presenter
             $comments = $posts->related('comments');
             if($comments){
                 $this->template->comments = $comments;
-            }else{$this->error('Comenty nebyly nalezeny');
+            }else{$this->error('Commenty nebyly nalezeny');
 
             }
         }else{
@@ -90,6 +94,44 @@ final class HomePresenter extends Nette\Application\UI\Presenter
             $this->redirect('this');
         }
 
+    }
+
+    public function renderNew($id){
+        
+    }
+
+       public function createComponentCommentForm(): BootstrapForm
+    {   
+        BootstrapForm::switchBootstrapVersion(Enums\BootstrapVersion::V5);
+
+        $form = new BootstrapForm;
+        $form->addText('name','Jméno:')->setRequired('Vyplňte prosím jméno');
+        $form->addEmail('email','Email:')->setRequired('Vyplňte prosím email');
+
+        $form->addTextArea('content', 'Komentář:')->setRequired('Vyplňte prosím textové pole');
+        $form->addSubmit('send', 'Publikovat komentář');
+
+        $form->onSuccess[] = [$this, 'commentFormSucceeded'];
+
+        return $form;
+
+        
+    }
+
+    public function  commentFormSucceeded(\stdClass $values)
+    {
+         $postId = $this->getParameter('id');
+ 
+         $this->database->table('comments')->insert([
+             'post_id' => $postId,
+             'name' => $values->name,
+             'email' => $values->email,
+             'content' => $values->content,
+             'created_at' => new \DateTime()]);
+             
+             $this->flashMessage('Děkuji za komentář', 'success');
+             $this->redirect('Home:show', $postId);
+ 
     }
 
     

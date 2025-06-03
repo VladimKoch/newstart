@@ -45,7 +45,7 @@
 
 <body>
 	{* Header *}
-	{* {include 'header.latte'} *}
+	{include 'header.latte'}
 	<div class="container">
 		{foreach $flashes as $flash}
 			<div class="alert alert-warning text-center">{$flash->message}</div>
@@ -56,7 +56,7 @@
 	{* <div n:snippet="flashes" id="flashes"> *}
 	{* Flashes *}
 
-	{* {include 'footer.latte'} *}
+	{include 'footer.latte'}
 
 
 	{* <script>

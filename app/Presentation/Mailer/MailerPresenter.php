@@ -1,42 +1,48 @@
 <?php
-
 declare(strict_types=1);
 
 namespace App\Presentation\Mailer;
 
 use Nette;
-use Nette\Application\UI\Form;
-use App\Components\NewsletterComponent;
+use Nette\Mail\Message;
+use Latte\Engine;
+use App\Model\MailSender;
+use Contributte\FormsBootstrap\BootstrapForm;
+use Contributte\FormsBootstrap\Enums;
 
 final class MailerPresenter extends Nette\Application\UI\Presenter
-{
-    private NewsletterComponent $newsletterComponent;
+{   
 
-    public function __construct(NewsletterComponent $newsletterComponent, private \App\Model\EManager $mailerManager)
-    {
-        parent::__construct();
-        $this->newsletterComponent = $newsletterComponent;
-    }
+    private $mailSender;
 
-    // public function handleSendNewsletter(): void
-    // {
-    //     $recipients = [
-    //         'vkochan@tiscali.cz',
-    //         'vkochanv@gmail.com'
-    //     ];
-        
-    //     $this->newsletterComponent = $this->getComponent('newsletter');
-    //     $this->newsletterComponent->setRecipients($recipients);
-    //     $this->newsletterComponent->send();
+    public function __construct(
+		private Nette\Application\LinkGenerator $linkGenerator,
+		private Nette\Bridges\ApplicationLatte\TemplateFactory $templateFactory,
+		private Nette\Database\Explorer $database,
+        MailSender $mailSender
+	) {
+        $this->mailSender = $mailSender;
+	}
 
-    //     $this->flashMessage('E-maily byly odeslány.', 'success');
-    //     $this->redirect('this');
-    // }
+
+
+    public function handleSend()
+				{
+					$mailer = new Nette\Mail\SmtpMailer(
+                    host: 'smtp.gmail.com',
+                    username: 'vkochanv@gmail.com',
+                    password: 'bzsj niwz yxhe life',
+                    encryption: 'ssl');
+						
+                    $mail = $this->mailSender->createEmail();		
+                    $mailer->send($mail);
+				}
+
 	
-
-public function createComponentNewsletterForm(): Form
+public function createComponentNewsletterForm(): BootstrapForm
 {
-    $form = new Form;
+    BootstrapForm::switchBootstrapVersion(Enums\BootstrapVersion::V5);
+    $form = new BootstrapForm;
 
     $form->addTextArea('content', 'Obsah newsletteru:')
         ->setRequired('Zadejte obsah newsletteru.');
@@ -61,7 +67,7 @@ public function createComponentNewsletterForm(): Form
 //     return $this->newsletterComponent->send();
 // }
 
-public function processNewsletterForm(Form $form, array $values): void
+public function processNewsletterForm(BootstrapForm $form, array $values): void
 {
     $recipients = array_map('trim', explode(',', $values['recipients']));
     // $newsletter = $this->getComponent('newsletter');
@@ -86,5 +92,8 @@ public function processNewsletterForm(Form $form, array $values): void
 // {
 //     return new NewsletterComponent($this->mailerManager);
 // }
+
+
+
 
 }

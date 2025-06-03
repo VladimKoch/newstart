@@ -39,14 +39,14 @@ di:
 # 		port: 465
 
 parameters:
-	uploadDirImg: 'C:\xampp\htdocs\web\www\uploads\img'
-	uploadDirPng: 'C:\xampp\htdocs\web\www\uploads\png'
+	uploadDirImg: 'C:\xampp\htdocs\newstart\www\uploads\img'
+	uploadDirPng: 'C:\xampp\htdocs\newstart\www\uploads\png'
 	moveDir: '/../../../www/uploads/img/'
-	host: smtp.gmail.com
-	username: vkochanv@gmail.com
-	password: bzsjniwzyxhelife
-	secure: ssl
-	port: 465
+	# host: smtp.gmail.com
+	# username: vkochanv@gmail.com
+	# password: bzsjniwzyxhelife
+	# secure: ssl
+	# port: 465
 
 
 

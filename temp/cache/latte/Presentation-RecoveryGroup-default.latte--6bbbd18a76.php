@@ -1,61 +1,40 @@
-{* This is the welcome page, you can delete it *}
+<?php
 
-{block content}
-{* <div hx-target="this" hx-swap="outerHTML"> *}
-{* {include '../header.latte'} *}
-{* <div id="banner">
-  <h1 n:block=title>Congratulations!</h1>
-	
-{* <div id="banner">
-	<h1 n:block=title>Congratulations!</h1>
-</div>
+declare(strict_types=1);
 
-   <div id="current-time"></div>
-<div id="content">
-	
-	
-	<br>
-	<br>
+use Latte\Runtime as LR;
 
-	<div class="pagination">{if $page > 1}
+/** source: C:\xampp\htdocs\newstart\app\Presentation\RecoveryGroup/default.latte */
+final class Template_6bbbd18a76 extends Latte\Runtime\Template
+{
+	public const Source = 'C:\\xampp\\htdocs\\newstart\\app\\Presentation\\RecoveryGroup/default.latte';
 
-				<a n:href="default, 1">První</a>
-				&nbsp;|&nbsp;
-				<a n:href="default, $page-1">Předchozí</a>
-				&nbsp;|&nbsp;
-				{/if}Stránka {$page} z {$lastPage}
-
-				{if $page < $lastPage}
-				&nbsp;|&nbsp;
-					<a n:href="default, $page+1">Další</a>&nbsp;|&nbsp;<a n:href="default, $lastPage">Poslední</a>
-				{/if}
-	</div>
-
-	<br>
-
-	<div n:foreach="$posts as $post" class="posts">
-		<a n:href="Post:default $post->id">{$post->title}</a>
-		<p>{$post->content}</p>
-		<br>
-	</div>
-
-	<div>
-	{if $user->isLoggedIn()}<a n:href="Post:new">Vložit nový příspěvek</a>{/if}
-	</div>
-
-	<a n:href="click!" class="btn btn-primary ajax">Zapamatuj čas</a>
-
-	
-	{snippet mySnippet}
-		<div>
-		<p>čas:{$time}</p>
-		</div>
-	{/snippet}
+	public const Blocks = [
+		['content' => 'blockContent'],
+	];
 
 
-</div> *}
+	public function main(array $ʟ_args): void
+	{
+		extract($ʟ_args);
+		unset($ʟ_args);
 
-  <!--Main layout-->
+		if ($this->global->snippetDriver?->renderSnippets($this->blocks[self::LayerSnippet], $this->params)) {
+			return;
+		}
+
+		$this->renderBlock('content', get_defined_vars()) /* line 3 */;
+	}
+
+
+	/** {block content} on line 3 */
+	public function blockContent(array $ʟ_args): void
+	{
+		extract($this->params);
+		extract($ʟ_args);
+		unset($ʟ_args);
+
+		echo '  <!--Main layout-->
   <main class="my-5">
     <div class="container">
       <!--Grid row-->
@@ -69,7 +48,9 @@
             <div class="row">
               <div class="col-12">
                 <div class="bg-image hover-overlay shadow-1-strong rounded"  data-mdb-ripple-init data-mdb-ripple-color="light">
-                  <img src="{$basePath}/uploads/img/vizitka.jpg" class="img-fluid" />
+                  <img src="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 72 */;
+		echo '/uploads/img/vizitka.jpg" class="img-fluid" />
                   <a href="#!">
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                   </a>
@@ -77,11 +58,6 @@
               </div>
 
               <div class="col-md-8 mb-4">
-                {* <h5>{$post->title}</h5>
-                <p>
-                  {$post->content}
-                </p> *}
-
                
               </div>
             </div>
@@ -99,7 +75,9 @@
             <section class="text-center border-bottom pb-4 mb-4">
               <div class="bg-image hover-overlay mb-4" data-mdb-ripple-init>
                 <img
-                  src="{$basePath}/uploads/img/unnamed.jpg"
+                  src="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 102 */;
+		echo '/uploads/img/unnamed.jpg"
                   class="img-fluid" />
                 <a href="https://mdbootstrap.com/docs/standard/" target="_blank">
                   <div class="mask" style="background-color: rgba(57, 192, 237, 0.2);"></div>
@@ -135,27 +113,10 @@
       <!--Grid row-->
 
       <!-- Pagination -->
-      {* <nav class="my-4" aria-label="...">
-        <ul class="pagination pagination-circle justify-content-center">
-          <li class="page-item">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item active" aria-current="page">
-            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav> *}
     </div>
   </main>
   <!--Main layout-->
 
-{* {include '../footer.latte'} *}
-
-{* </div> *}
-
-{/block}
+';
+	}
+}
