@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
 
 jobs:
   build:
@@ -12,13 +14,14 @@ jobs:
       - name: Načti repozitář
         uses: actions/checkout@v4
 
-      - name: Nainstaluj PHP a rozšíření
+      - name: Nainstaluj PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+          extensions: mbstring, intl, pdo, pdo_mysql
 
-      - name: Composer install
+      - name: Nainstaluj Composer balíčky
         run: composer install
 
       - name: Spusť PHPStan
-        run: vendor/bin/phpstan analyse --level=max app
+        run: php vendor/bin/phpstan analyse -c phpstan.neon
