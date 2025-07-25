@@ -47,8 +47,8 @@ final class Template_52cc0ce85b extends Latte\Runtime\Template
 		extract($ʟ_args);
 		unset($ʟ_args);
 
-		$this->createTemplate('../header.latte', $this->params, 'include')->renderToContentType('html') /* line 2 */;
-		echo '<section>
+		echo '
+<section>
   <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
     <div class="container">
       <div class="row gx-lg-5 align-items-center">
@@ -140,8 +140,8 @@ final class Template_52cc0ce85b extends Latte\Runtime\Template
   </div>
 </section>
 
+
+
 ';
-		$this->createTemplate('../footer.latte', $this->params, 'include')->renderToContentType('html') /* line 69 */;
-		echo "\n";
 	}
 }

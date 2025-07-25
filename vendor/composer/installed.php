@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'nette/web-project',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => '923cbab28862182ec8836657bced526ed6171790',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '1828f5974f92e307de7a1491ce88bce6c4fa5179',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -209,13 +209,22 @@
             'dev_requirement' => false,
         ),
         'nette/web-project' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => '923cbab28862182ec8836657bced526ed6171790',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '1828f5974f92e307de7a1491ce88bce6c4fa5179',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'phpstan/phpstan' => array(
+            'pretty_version' => '2.1.19',
+            'version' => '2.1.19.0',
+            'reference' => '473a8c30e450d87099f76313edcbb90852f9afdf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpstan/phpstan',
+            'aliases' => array(),
+            'dev_requirement' => true,
         ),
         'symfony/thanks' => array(
             'pretty_version' => 'v1.4.0',

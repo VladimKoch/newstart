@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Načti repozitář
+        uses: actions/checkout@v4
+
+      - name: Nainstaluj PHP a rozšíření
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Composer install
+        run: composer install
+
+      - name: Spusť PHPStan
+        run: vendor/bin/phpstan analyse --level=max app
